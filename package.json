@@ -1,0 +1,36 @@
+{
+  "name": "create-next-example-app",
+  "scripts": {
+    "dev": "node src/app.js",
+    "start": "NODE_ENV=production node app.js",
+    "build": "next build",
+    "heroku-postbuild": "next build"
+  },
+  "dependencies": {
+    "@zaytt/pubg": "^3.9.1",
+    "apicache": "^1.4.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-validator": "^6.1.1",
+    "helmet": "^3.20.0",
+    "lodash": "^4.17.15",
+    "lodash.add": "^3.7.0",
+    "lodash.intersectionby": "^4.7.0",
+    "lodash.isempty": "^4.4.0",
+    "lodash.isnumber": "^3.0.3",
+    "lodash.keys": "^4.2.0",
+    "lodash.merge": "^4.6.2",
+    "lodash.mergewith": "^4.6.2",
+    "lodash.omit": "^4.5.0",
+    "lodash.pick": "^4.4.0",
+    "memjs": "^1.2.2",
+    "mongoose": "^5.6.7",
+    "morgan": "^1.9.1",
+    "next": "9.0.2",
+    "node-cron": "^2.0.3",
+    "passport": "^0.4.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
+  }
+}

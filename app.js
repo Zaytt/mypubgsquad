@@ -15,8 +15,7 @@ const app = next({ dev });
 const handler = app.getRequestHandler();
 
 // Store PUBG Seasons in memcached
-const seasonsController = require('./server/routes/api/controllers/seasonsController');
-const { getPlayersSeasonStats, getSquadStatsFromMatches } = require('./server/core/statsAnalysis');
+const seasonsController = require('./api/routes/api/controllers/seasonsController');
 seasonsController.storeSeasons();
 
 app.prepare().then(() => {
@@ -104,7 +103,7 @@ app.prepare().then(() => {
   });
 
   /* Load stats routes */
-  const routes = require('./server/routes/index');
+  const routes = require('./api/routes/index');
   server.use('/api/stats', routes.api.stats);
 
   /* default route

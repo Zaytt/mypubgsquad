@@ -1,7 +1,7 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev": "node src/app.js",
+    "dev": "node app.js",
     "start": "NODE_ENV=production node app.js",
     "build": "next build",
     "heroku-postbuild": "next build"

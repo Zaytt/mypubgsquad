@@ -1,12 +1,9 @@
 const _ = require('lodash');
 const seasonsController = require('./seasonsController');
-const cache = require('../../cache/cacheController');
+const cache = require('../../../cache/cacheController');
 
-const { getPlayersSeasonStats, getSquadStatsFromMatches } = require('../../core/statsAnalysis');
+const { getPlayersSeasonStats, getSquadStatsFromMatches } = require('../../../core/statsAnalysis');
 
-const test = async (req, res) => {
-  res.json(req.query);
-};
 /**
  * @route GET /api/stats?squad=[playernames]&season=[seasonid]
  * @description Returns the stats of a squad of players for a given season
@@ -69,6 +66,7 @@ const getSquadStats = async (req, res) => {
  */
 const getSquadMatchesStats = async (req, res) => {
   let { matches, playerNames } = req.body;
+
   try {
     res.status(200).json(await getSquadStatsFromMatches(matches, playerNames));
   } catch (error) {
@@ -88,7 +86,6 @@ const getSquadMatchesStats = async (req, res) => {
 };
 
 module.exports = {
-  test,
   getSquadStats,
   getSquadMatchesStats
 };

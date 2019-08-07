@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _round from 'lodash.round';
 import { getRankTitleLevel, getRankTitle } from '../../../util/Util';
-import rankIcons from '../../../assets/images/images.js';
+// import rankIcons from '../../../assets/images/images.js';
 
 import PillBadge from './PillBadge';
 
@@ -14,9 +14,22 @@ class SquadMemberItemHeader extends Component {
     top10s: PropTypes.number.isRequired
   };
 
+  images = {
+    Unranked: '/static/img/rank_icons/80px-Rank-Unranked.png',
+    Beginner: '/static/img/rank_icons/80px-Rank-Beginner.png',
+    Novice: '/static/img/rank_icons/80px-Rank-Novice.png',
+    Experienced: '/static/img/rank_icons/80px-Rank-Experienced.png',
+    Skilled: '/static/img/rank_icons/80px-Rank-Skilled.png',
+    Specialist: '/static/img/rank_icons/80px-Rank-Specialist.png',
+    Expert: '/static/img/rank_icons/80px-Rank-Expert.png',
+    Survivor: '/static/img/rank_icons/80px-Rank-Survivor.png',
+    LoneSurvivor: '/static/img/rank_icons/80px-Rank-LoneSurvivor.png'
+  };
+
   render() {
     const { playername, rank, gamesPlayed, wins, top10s } = this.props;
-    const rankIconIndex = rankIcons.findIndex(icon => icon.id === getRankTitle(rank));
+    const rankIconSrc = this.images[getRankTitle(rank)];
+
     return (
       <div className="row">
         <div className="col-5  d-flex align-items-center mx-0">
@@ -25,11 +38,7 @@ class SquadMemberItemHeader extends Component {
         <div className="col-7  mx-0">
           <div className="row">
             <div className="d-flex col-xl-2 col-lg-2 col-sm-3 col-4 p-0 justify-content-end">
-              <img
-                src={rankIcons[rankIconIndex].src}
-                alt="Rank Icon"
-                style={{ width: '69px', height: '80px' }}
-              />
+              <img src={rankIconSrc} alt="Rank Icon" style={{ width: '80px', height: '80px' }} />
             </div>
             <div className="d-none d-sm-flex col-xl-5 col-lg-5 col-sm-4 col-4 align-items-end justify-content-center text-center">
               <div className="row">

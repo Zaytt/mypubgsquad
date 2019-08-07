@@ -30,7 +30,7 @@ const getRankTitle = rank => {
     'Specialist',
     'Expert',
     'Survivor',
-    'Lone Survivor'
+    'LoneSurvivor'
   ];
   const index = Math.trunc(rank / 1000);
 

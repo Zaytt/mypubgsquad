@@ -119,7 +119,6 @@ const getSquadStatsFromMatches = async (matches, playerNames) => {
       return await pubg.getMatch(match.id);
     })
   );
-
   const fullDuoMatches = fetchedMatches.filter(match => match.attributes.gameMode === 'duo');
   const fullDuoFPPMatches = fetchedMatches.filter(match => match.attributes.gameMode === 'duo-fpp');
   const fullSquadMatches = fetchedMatches.filter(match => match.attributes.gameMode === 'squad');

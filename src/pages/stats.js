@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import Layout from '../components/layout';
-// import Dashboard from '../components/stats';
-import { useRouter } from 'next/router';
+import Dashboard from '../components/stats_page';
 
-export default function Stats() {
-  const router = useRouter();
-  const { squad } = router.query;
-  console.log(squad);
-  return <Layout>slug</Layout>;
+export default class stats extends Component {
+  static async getInitialProps({ query, res }) {
+    return { squad: query.squad };
+  }
+
+  render() {
+    return (
+      <Layout>
+        <Dashboard squad={this.props.squad} test="test" />
+      </Layout>
+    );
+  }
 }

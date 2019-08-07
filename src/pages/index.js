@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../components/layout';
-import Landing from '../components/landing';
-// import '../static/css/App.css';
+import Landing from '../components/landing_page';
 
 export default class Home extends Component {
   render() {

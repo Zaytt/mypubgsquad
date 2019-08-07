@@ -1,9 +1,10 @@
-const pubgAPI = require('../../pubg_api/pubg');
-const { getCachedSeasons, setCachedSeasons } = require('../../cache/cacheController');
+const pubgAPI = require('../../../pubg_api/pubg');
+const cache = require('../../../cache/cacheController');
 
 const storeSeasons = async () => {
   seasons = await pubgAPI.getSeasons();
-  await setCachedSeasons(seasons)
+  await cache
+    .setCachedSeasons(seasons)
     .then(res => console.log('Stored Seasons in Cache'))
     .catch(err => {
       console.warn('Failed to store seasons in cache');
@@ -12,13 +13,13 @@ const storeSeasons = async () => {
 };
 
 const getSeasons = async () => {
-  let seasons = await getCachedSeasons();
+  let seasons = await cache.getCachedSeasons();
 
   if (seasons) {
     return seasons;
   } else {
     seasons = await pubgAPI.getSeasons();
-    await setCachedSeasons(seasons).catch(err => {
+    await cache.setCachedSeasons(seasons).catch(err => {
       throw err;
     });
     return seasons;

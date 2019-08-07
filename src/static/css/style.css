@@ -15,7 +15,7 @@
 }
 
 .light-gray {
-  background: rgb(234, 234, 234);
+  background: rgb(240, 240, 240);
 }
 
 .card-title {
@@ -53,7 +53,7 @@ img {
 
 .landing {
   position: relative;
-  background: url('/static/assets/background/showcase.jpg') no-repeat;
+  background: url('/static/img/background/showcase.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -113,6 +113,10 @@ img {
   box-shadow: none !important;
   outline: 0px !important;
   -webkit-appearance: none;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 @font-face {

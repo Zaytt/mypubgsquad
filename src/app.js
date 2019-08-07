@@ -12,10 +12,11 @@ const port = process.env.PORT || 3000;
 const ROOT_URL = dev ? `http://localhost:${port}` : process.env.PRODUCTION_URL;
 
 const app = next({ dev, dir: './src' });
-const handle = app.getRequestHandler();
+const handler = app.getRequestHandler();
 
 // Store PUBG Seasons in memcached
-const seasonsController = require('./server/routes/controllers/seasonsController');
+const seasonsController = require('./server/routes/api/controllers/seasonsController');
+const { getPlayersSeasonStats, getSquadStatsFromMatches } = require('./server/core/statsAnalysis');
 seasonsController.storeSeasons();
 
 app.prepare().then(() => {
@@ -35,11 +36,11 @@ app.prepare().then(() => {
 
   /* give all Next.js's requests to Next.js server */
   server.get('/_next/*', (req, res) => {
-    handle(req, res);
+    handler(req, res);
   });
 
   server.get('/static/*', (req, res) => {
-    handle(req, res);
+    handler(req, res);
   });
 
   // const MongoStore = mongoSessionStore(session);
@@ -93,18 +94,25 @@ app.prepare().then(() => {
     res.status(status).json(message);
   });
 
-  /* create custom routes with route params */
-  server.get('/profile/:userId', (req, res) => {
-    const routeParams = Object.assign({}, req.params, req.query);
-    return app.render(req, res, '/profile', routeParams);
+  /**
+   * @route GET /stats/ page
+   * @param {string} squad Comma separated string containing the players in the squad to look up
+   * @description returns the stats of players from the matches that they have played together this season
+   */
+  server.get('/stats/:squad', (req, res) => {
+    return app.render(req, res, '/stats', { squad: req.params.squad });
   });
+
+  /* Load stats routes */
+  const routes = require('./server/routes/index');
+  server.use('/api/stats', routes.api.stats);
 
   /* default route
      - allows Next to handle all other routes
      - includes the numerous `/_next/...` routes which must    be exposed for the next app to work correctly
      - includes 404'ing on unknown routes */
   server.get('*', (req, res) => {
-    handle(req, res);
+    handler(req, res);
   });
 
   server.listen(port, err => {

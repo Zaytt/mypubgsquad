@@ -1,7 +1,7 @@
-const seasons = require('./controllers/seasonsController');
-const stats = require('./controllers/statsController');
+const apiRoutes = require('./api/');
+const pageRoutes = require('./pages/');
 
 module.exports = {
-  seasons,
-  stats
+  api: apiRoutes,
+  pages: pageRoutes
 };

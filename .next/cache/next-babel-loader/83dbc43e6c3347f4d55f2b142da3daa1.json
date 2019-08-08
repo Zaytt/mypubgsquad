@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from 'react';\nimport Layout from '../layout';\nexport default function index() {\n  return React.createElement(Layout, null, \"Register\");\n}","map":null,"metadata":{},"sourceType":"module"}

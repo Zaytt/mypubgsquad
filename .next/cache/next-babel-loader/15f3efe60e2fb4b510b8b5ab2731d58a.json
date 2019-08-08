@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React from 'react';\nimport Landing from './Landing';\nexport default function index() {\n  return React.createElement(Landing, null);\n}","map":null,"metadata":{},"sourceType":"module"}

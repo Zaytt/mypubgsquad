@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { combineReducers } from 'redux';\nimport playerSeasonsReducer from './playerSeasonsReducer';\nimport togetherStatsReducer from './togetherStatsReducer';\nexport default combineReducers({\n  playerSeasons: playerSeasonsReducer,\n  squad: togetherStatsReducer\n});","map":null,"metadata":{},"sourceType":"module"}

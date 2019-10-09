@@ -8,6 +8,12 @@ module.exports = withCSS(
       config.plugins = config.plugins || [];
 
       return config;
+    },
+    exportPathMap() {
+      return {
+        '/': { page: '/' },
+        '/about': { page: '/about' }
+      };
     }
   })
 );

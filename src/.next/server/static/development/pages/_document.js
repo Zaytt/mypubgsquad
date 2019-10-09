@@ -1490,7 +1490,11 @@ function (_Document) {
         src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js",
         integrity: "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
         crossOrigin: "anonymous"
-      })), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_6__["Main"], null), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_6__["NextScript"], null)));
+      })), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_6__["Main"], null), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_6__["NextScript"], null), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("script", {
+        "data-ad-client": "ca-pub-9747865315387020",
+        async: true,
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+      })));
     }
   }]);
 

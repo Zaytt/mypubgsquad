@@ -102,6 +102,11 @@ export default class MyDocument extends Document {
           </Head>
           <Main />
           <NextScript />
+          <script
+            data-ad-client="ca-pub-9747865315387020"
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          />
         </body>
       </html>
     );

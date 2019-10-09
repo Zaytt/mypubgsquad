@@ -1,1 +1,0 @@
-{"ast":null,"code":"import React from 'react';\nimport Register from '../components/register_page';\nexport default function register() {\n  return React.createElement(Register, null);\n}","map":null,"metadata":{},"sourceType":"module"}

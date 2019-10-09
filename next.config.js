@@ -1,12 +1,11 @@
 const withFonts = require('next-fonts');
 const withCSS = require('@zeit/next-css');
+require('dotenv').config();
+
 module.exports = withCSS(
   withFonts({
     webpack: config => {
-      // Fixes npm packages that depend on `fs` module
-      config.node = {
-        fs: 'empty'
-      };
+      config.plugins = config.plugins || [];
 
       return config;
     }

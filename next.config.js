@@ -1,6 +1,5 @@
 const withFonts = require('next-fonts');
 const withCSS = require('@zeit/next-css');
-require('dotenv').config();
 
 module.exports = withCSS(
   withFonts({

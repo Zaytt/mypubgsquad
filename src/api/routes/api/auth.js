@@ -28,7 +28,7 @@ router.get(
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect to the dashboard.
-    res.redirect('/dashboard/');
+    res.redirect('/dashboard');
   }
 );
 
@@ -39,7 +39,7 @@ router.get('/steam/return', passport.authenticate('steam', { failureRedirect: '/
   res
 ) {
   // Successful authentication, redirect to the dashboard.
-  res.redirect('/dashboard/');
+  res.redirect('/dashboard');
 });
 
 // Endpoint to get current user

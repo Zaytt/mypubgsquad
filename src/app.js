@@ -70,7 +70,7 @@ app.prepare().then(() => {
   const sessionConfig = {
     secret: uid.sync(18),
     cookie: {
-      maxAge: 86400 * 1000 // 24 hours in milliseconds
+      maxAge: 86400 * 15 * 1000 // 15 days in milliseconds
     },
     resave: false,
     saveUninitialized: true
@@ -161,6 +161,16 @@ app.prepare().then(() => {
   const routes = require('./api/routes/index');
   server.use('/api/stats', routes.api.stats);
   server.use('/api/auth', routes.api.auth);
+
+  // Restricting access to some routes
+  const restrictAccess = (req, res, next) => {
+    if (!req.isAuthenticated()) return res.redirect('/login');
+    next();
+  };
+
+  // Restricted Routes
+  server.use('/dashboard', restrictAccess);
+
   /* default route
      - allows Next to handle all other routes
      - includes the numerous `/_next/...` routes which must    be exposed for the next app to work correctly

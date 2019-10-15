@@ -1,1 +1,0 @@
-{"ast":null,"code":"import React from 'react';\nimport ResetPassword from '../../components/passwordReset_page/';\nimport Layout from '../../components/layout/';\n\nfunction reset() {\n  return React.createElement(Layout, null, React.createElement(ResetPassword, null));\n}\n\nexport default reset;","map":null,"metadata":{},"sourceType":"module"}

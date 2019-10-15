@@ -57,8 +57,8 @@ const facebook = new FacebookStrategy(
 
 const steam = new SteamStrategy(
   {
-    returnURL: 'http://localhost:3000/api/auth/steam/return',
-    realm: 'http://localhost:3000/',
+    returnURL: `${ROOT_URL}/api/auth/steam/return`,
+    realm: ROOT_URL,
     apiKey: keys.steamApiKey
   },
   function(identifier, profile, done) {

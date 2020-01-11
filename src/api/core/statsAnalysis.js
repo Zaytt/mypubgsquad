@@ -178,7 +178,7 @@ const getPlayersStatsFromMatches = (matches, players) => {
     teamTotal: {}
   };
 
-  players.forEach(player => {s
+  players.forEach(player => {
     squadStats[player] = {
       wins: 0,
       top10s: 0,

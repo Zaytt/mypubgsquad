@@ -22,7 +22,7 @@ class Header extends Component {
           <a className="nav-link text-light">Home</a>
         </Link>
       </li>
-      <li className="nav-item ml-3 text-center">
+      {/* <li className="nav-item ml-3 text-center">
         <Link href="/register">
           <a className="nav-link text-light d-inline-block text-nowrap ">Sign Up</a>
         </Link>
@@ -31,7 +31,7 @@ class Header extends Component {
         <Link href="/login">
           <a className="nav-link text-light">Login</a>
         </Link>
-      </li>
+      </li> */}
     </ul>
   );
 
@@ -94,11 +94,11 @@ class Header extends Component {
 
 Header.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(

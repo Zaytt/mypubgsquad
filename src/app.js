@@ -15,13 +15,15 @@ const uid = require('uid-safe');
 const strategies = require('./api/auth/strategies');
 const User = require('./api/models/User');
 
+const visitSite = require('./utils/visitSite');
+
 const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3000;
 const ROOT_URL = dev ? `http://localhost:${port}` : process.env.PRODUCTION_URL;
 
 const app = next({
   dev,
-  dir: './src'
+  dir: './src',
 });
 const handler = app.getRequestHandler();
 
@@ -62,7 +64,7 @@ app.prepare().then(() => {
     .then(() => {
       console.log('MongoDB Connected');
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 
@@ -70,10 +72,10 @@ app.prepare().then(() => {
   const sessionConfig = {
     secret: uid.sync(18),
     cookie: {
-      maxAge: 86400 * 15 * 1000 // 15 days in milliseconds
+      maxAge: 86400 * 15 * 1000, // 15 days in milliseconds
     },
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
   };
 
   server.use(session(sessionConfig));
@@ -179,7 +181,9 @@ app.prepare().then(() => {
     handler(req, res);
   });
 
-  server.listen(port, err => {
+  setInterval(visitSite, 1000 * 60 * 25);
+
+  server.listen(port, (err) => {
     if (err) throw err;
     console.log(`Server listening on ${ROOT_URL}`);
   });

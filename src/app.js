@@ -23,7 +23,7 @@ const ROOT_URL = dev ? `http://localhost:${port}` : process.env.PRODUCTION_URL;
 
 const app = next({
   dev,
-  dir: './src',
+  dir: './src'
 });
 const handler = app.getRequestHandler();
 
@@ -59,23 +59,23 @@ app.prepare().then(() => {
   const { mongoURI } = require('./api/config/keys');
 
   // Connect to MONGODB
-  mongoose
-    .connect(mongoURI, { useNewUrlParser: true })
-    .then(() => {
-      console.log('MongoDB Connected');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // mongoose
+  //   .connect(mongoURI, { useNewUrlParser: true })
+  //   .then(() => {
+  //     console.log('MongoDB Connected');
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
   // Add session management to Express
   const sessionConfig = {
     secret: uid.sync(18),
     cookie: {
-      maxAge: 86400 * 15 * 1000, // 15 days in milliseconds
+      maxAge: 86400 * 15 * 1000 // 15 days in milliseconds
     },
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: true
   };
 
   server.use(session(sessionConfig));

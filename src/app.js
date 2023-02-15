@@ -1,25 +1,28 @@
 const next = require('next');
 const express = require('express');
-const mongoose = require('mongoose');
 const helmet = require('helmet');
-const http = require('http');
-const url = require('url');
-const path = require('path');
 const compression = require('compression');
-const expressValidator = require('express-validator');
 
 const session = require('express-session');
 const passport = require('passport');
-
-const uid = require('uid-safe');
 const strategies = require('./api/auth/strategies');
-const User = require('./api/models/User');
+const uid = require('uid-safe');
 
 const visitSite = require('./utils/visitSite');
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3000;
-const ROOT_URL = dev ? `http://localhost:${port}` : process.env.PRODUCTION_URL;
+// const ROOT_URL = dev ? `http://localhost:${port}` : process.env.PRODUCTION_URL;
+const ROOT_URL = `http://localhost:${port}`;
+
+// Load environment variables from .env, .env.local, etc. This explicit call
+// into `@next/env` allows using environment variables before next() is called.
+// More info: https://nextjs.org/docs/basic-features/environment-variables
+
+if (!dev) {
+  const nextEnv = require('@next/env');
+  nextEnv.loadEnvConfig('./', process.env.NODE_ENV !== 'production');
+}
 
 const app = next({
   dev,
@@ -55,19 +58,6 @@ app.prepare().then(() => {
     handler(req, res);
   });
 
-  // DB config
-  const { mongoURI } = require('./api/config/keys');
-
-  // Connect to MONGODB
-  // mongoose
-  //   .connect(mongoURI, { useNewUrlParser: true })
-  //   .then(() => {
-  //     console.log('MongoDB Connected');
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-
   // Add session management to Express
   const sessionConfig = {
     secret: uid.sync(18),
@@ -85,9 +75,9 @@ app.prepare().then(() => {
   server.use(passport.session());
 
   // Define Passport Strategies
-  passport.use(strategies.local);
-  passport.use(strategies.facebook);
-  passport.use(strategies.steam);
+  // passport.use(strategies.local);
+  // passport.use(strategies.facebook);
+  // passport.use(strategies.steam);
 
   passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -98,51 +88,6 @@ app.prepare().then(() => {
       done(err, user);
     });
   });
-
-  // const MongoStore = mongoSessionStore(session);
-  // const sessionConfig = {
-  //   name: 'next-connect.sid',
-  //   // secret used for using signed cookies w/ the session
-  //   secret: process.env.SESSION_SECRET,
-  //   store: new MongoStore({
-  //     mongooseConnection: mongoose.connection,
-  //     ttl: 14 * 24 * 60 * 60 // save session for 14 days
-  //   }),
-  //   // forces the session to be saved back to the store
-  //   resave: false,
-  //   // don't save unmodified sessions
-  //   saveUninitialized: false,
-  //   cookie: {
-  //     httpOnly: true,
-  //     maxAge: 1000 * 60 * 60 * 24 * 14 // expires in 14 days
-  //   }
-  // };
-
-  // if (!dev) {
-  //   sessionConfig.cookie.secure = true; // serve secure cookies in production environment
-  //   server.set('trust proxy', 1); // trust first proxy
-  // }
-
-  // /* Apply our session configuration to express-session */
-  // server.use(session(sessionConfig));
-
-  // /* Add passport middleware to set passport up */
-  // server.use(passport.initialize());
-  // server.use(passport.session());
-
-  // server.use((req, res, next) => {
-  //   /* custom middleware to put our user data (from passport) on the req.user so we can access it as such anywhere in our app */
-  //   res.locals.user = req.user || null;
-  //   next();
-  // });
-
-  /* morgan for request logging from client
-  - we use skip to ignore static files from _next folder */
-  // server.use(
-  //   logger('dev', {
-  //     skip: req => req.url.includes('_next')
-  //   })
-  // );
 
   /* Error handling from async / await functions */
   server.use((err, req, res, next) => {
@@ -185,6 +130,6 @@ app.prepare().then(() => {
 
   server.listen(port, (err) => {
     if (err) throw err;
-    console.log(`Server listening on ${ROOT_URL}`);
+    console.log(`Server listening on ${port}`);
   });
 });

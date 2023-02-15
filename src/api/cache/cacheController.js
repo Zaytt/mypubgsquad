@@ -1,13 +1,14 @@
 const memjs = require('memjs');
 
-let serverStr =
-  process.env.NODE_ENV === 'production'
-    ? process.env.MEMCACHIER_USERNAME +
-      ':' +
-      process.env.MEMCACHIER_PASSWORD +
-      '@' +
-      process.env.MEMCACHIER_SERVERS
-    : 'localhost:11211';
+// let serverStr =
+//   process.env.NODE_ENV === 'production'
+//     ? process.env.MEMCACHIER_USERNAME +
+//       ':' +
+//       process.env.MEMCACHIER_PASSWORD +
+//       '@' +
+//       process.env.MEMCACHIER_SERVERS
+//     : 'localhost:11211';
+let serverStr = 'localhost:11211';
 const cache = memjs.Client.create(serverStr);
 
 /**

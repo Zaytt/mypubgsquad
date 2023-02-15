@@ -3,7 +3,10 @@ const withCSS = require('@zeit/next-css');
 
 module.exports = withCSS(
   withFonts({
-    webpack: config => {
+    env: {
+      API_KEY: process.env.PUBG_KEY
+    },
+    webpack: (config) => {
       config.plugins = config.plugins || [];
 
       return config;
